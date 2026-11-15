@@ -218,7 +218,7 @@ public struct APIEndpoint: Equatable, Sendable {
         guard !value.isEmpty else {
             throw APIEndpointError.invalidPathParameter(name)
         }
-        guard value.unicodeScalars.allSatisfy(allowedPathParameterScalars.contains) else {
+        guard value.unicodeScalars.allSatisfy({ allowedPathParameterScalars.contains($0) }) else {
             throw APIEndpointError.invalidPathParameter(name)
         }
         guard !value.contains("..") else {
@@ -232,8 +232,8 @@ public struct APIEndpoint: Equatable, Sendable {
                 throw APIEndpointError.invalidQueryParameter(name)
             }
             let controlCharacters = CharacterSet.controlCharacters
-            let hasControlCharacter = value.unicodeScalars.contains(controlCharacters.contains)
-                || name.unicodeScalars.contains(controlCharacters.contains)
+            let hasControlCharacter = value.unicodeScalars.contains(where: { controlCharacters.contains($0) })
+                || name.unicodeScalars.contains(where: { controlCharacters.contains($0) })
             guard !hasControlCharacter else {
                 throw APIEndpointError.invalidQueryParameter(name)
             }
