@@ -68,7 +68,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| PLAT-01, API-01, API-02 | Phase 1 | Pending |
+| PLAT-01, API-01, API-02 | Phase 1 | In progress — contracts authored; Windows doc audit passed; cloud-Mac verification pending |
 | AUTH-01..03 | Phase 2 | Pending |
 | DISC-01..03, SOCIAL-01..02 | Phase 3 | Pending |
 | PLAY-01..04 | Phase 4 | Pending |

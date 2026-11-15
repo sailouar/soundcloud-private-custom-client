@@ -5,7 +5,7 @@
 See: `.planning/PROJECT.md` (updated 2026-11-15)
 
 **Core value:** The owner can reliably find and play their SoundCloud music offline without duplicate local files or misleading download behavior.
-**Current focus:** Phase 1 - API and Platform Foundation (Plan 01-03 complete; cloud-Mac verification pending)
+**Current focus:** Phase 1 - API and Platform Foundation (all 4 plans authored; Windows documentation audit passed; cloud-Mac verification pending)
 
 ## Current Position
 
@@ -13,7 +13,8 @@ See: `.planning/PROJECT.md` (updated 2026-11-15)
 - Plan 01-01 added the dependency-free capability tracer and explicit download gate.
 - Plan 01-02 added the SwiftUI adapter, Xcode project, and protocol-only `LocalStore` boundary.
 - Plan 01-03 added the OAuth 2.1 + PKCE contract, token/refresh lifecycle, callback validation, and the documented API endpoint contract.
-- Next action: execute Plan 01-04 to reconcile documentation with source and build artifacts.
+- Plan 01-04 reconciled API, authentication, architecture, testing, and changelog documentation and passed the Windows source-to-document audit.
+- Next action: run the cloud-Mac lane (`swift package describe`, `swift test`, the OAuth/API filters, and the Xcode scheme tests), then plan Phase 2.
 
 ## Decisions
 
@@ -35,6 +36,7 @@ See: `.planning/PROJECT.md` (updated 2026-11-15)
 - Swift package description and Swift tests remain pending on a cloud Mac; Windows checks passed without claiming compilation.
 - The Phase 1 Plan 01-02 Xcode project and SwiftUI adapter are authored, but cloud-Mac project listing, simulator tests, and SwiftData smoke verification remain pending.
 - The Plan 01-03 OAuth and API contract suites are authored, but `swift test --filter OAuthPKCETests`, `--filter OAuthCallbackTests`, and `--filter APIContractTests` have not run.
+- The Plan 01-04 documentation audit passes on Windows; native compilation and the Xcode/Swift test suites still require the cloud Mac.
 
 ---
 *Last updated: 2026-11-15*

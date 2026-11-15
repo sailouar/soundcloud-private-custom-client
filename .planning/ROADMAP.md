@@ -15,7 +15,7 @@ Plans:
 - [x] 01-01-PLAN.md — Build the transport-to-core capability tracer and download gate
 - [x] 01-02-PLAN.md — Prove the SwiftUI adapter and cloud-Mac Xcode boundary
 - [x] 01-03-PLAN.md — Implement official OAuth and API contracts
-- [ ] 01-04-PLAN.md — Reconcile documentation with source and build artifacts
+- [x] 01-04-PLAN.md — Reconcile documentation with source and build artifacts
 
 ### Phase 2: Authentication and Secure Session
 **Goal:** Sign in through the supported flow, persist tokens in Keychain, restore sessions, and handle expiry/sign-out.
