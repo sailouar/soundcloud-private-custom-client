@@ -13,7 +13,7 @@ The roadmap gates implementation on official API capability research, then build
 
 Plans:
 - [x] 01-01-PLAN.md — Build the transport-to-core capability tracer and download gate
-- [ ] 01-02-PLAN.md — Prove the SwiftUI adapter and cloud-Mac Xcode boundary
+- [x] 01-02-PLAN.md — Prove the SwiftUI adapter and cloud-Mac Xcode boundary
 - [ ] 01-03-PLAN.md — Implement official OAuth and API contracts
 - [ ] 01-04-PLAN.md — Reconcile documentation with source and build artifacts
 
