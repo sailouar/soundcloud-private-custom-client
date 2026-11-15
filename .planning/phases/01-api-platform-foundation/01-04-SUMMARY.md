@@ -75,7 +75,8 @@ status: complete
 - Task 2 PowerShell audit (required artifacts, source claims present in docs, and
   no prohibited implementation markers in `Sources/SoundCloudCore` or
   `ios/SoundCloudPersonal`): **passed on Windows**.
-- `git diff --check`: **passed**.
+- `git diff --check` on the plan changes: **passed after a follow-up fix** removed a
+  trailing blank line at the end of `docs/ARCHITECTURE.md`.
 - `swift package describe`, `swift test`, the OAuth/API test filters, and
   `xcodebuild test`: **pending**; Swift and Xcode are unavailable on Windows.
 - No native compilation, simulator execution, or passing Swift test result is

@@ -54,4 +54,3 @@ that fails when a stable source claim is missing from these documents.
 CloudScrobble is an architectural reference for a split core/app package and
 mock-backed tests only. It is not an authority on SoundCloud permissions, and no
 downloader behavior from any third-party project is reproduced here.
-
