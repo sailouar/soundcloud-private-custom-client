@@ -1,0 +1,142 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		100000000000000000000001 /* SoundCloudPersonalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000001 /* SoundCloudPersonalApp.swift */; };
+		100000000000000000000002 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000002 /* AppEnvironment.swift */; };
+		100000000000000000000003 /* CapabilityStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000003 /* CapabilityStatusView.swift */; };
+		100000000000000000000005 /* CapabilityAdapterIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000005 /* CapabilityAdapterIntegrationTests.swift */; };
+		100000000000000000000006 /* StorageMigrationSmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000006 /* StorageMigrationSmokeTests.swift */; };
+		100000000000000000000007 /* SoundCloudCore in Frameworks */ = {isa = PBXBuildFile; productRef = 300000000000000000000001 /* SoundCloudCore */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		200000000000000000000001 /* SoundCloudPersonalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCloudPersonalApp.swift; sourceTree = "<group>"; };
+		200000000000000000000002 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		200000000000000000000003 /* CapabilityStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapabilityStatusView.swift; sourceTree = "<group>"; };
+		200000000000000000000004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		200000000000000000000005 /* CapabilityAdapterIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapabilityAdapterIntegrationTests.swift; sourceTree = "<group>"; };
+		200000000000000000000006 /* StorageMigrationSmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMigrationSmokeTests.swift; sourceTree = "<group>"; };
+		200000000000000000000007 /* SoundCloudPersonal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundCloudPersonal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		200000000000000000000008 /* SoundCloudPersonalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundCloudPersonalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		400000000000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (100000000000000000000007 /* SoundCloudCore in Frameworks */,); runOnlyForDeploymentPostprocessing = 0; };
+		400000000000000000000002 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		500000000000000000000001 = {
+			isa = PBXGroup;
+			children = (500000000000000000000002 /* SoundCloudPersonal */, 500000000000000000000003 /* SoundCloudPersonalTests */, 500000000000000000000004 /* Products */,);
+			sourceTree = "<group>";
+		};
+		500000000000000000000002 /* SoundCloudPersonal */ = {
+			isa = PBXGroup;
+			children = (200000000000000000000001 /* SoundCloudPersonalApp.swift */, 200000000000000000000002 /* AppEnvironment.swift */, 500000000000000000000005 /* Views */, 200000000000000000000004 /* Info.plist */,);
+			path = ios/SoundCloudPersonal;
+			sourceTree = SOURCE_ROOT;
+		};
+		500000000000000000000003 /* SoundCloudPersonalTests */ = {
+			isa = PBXGroup;
+			children = (200000000000000000000005 /* CapabilityAdapterIntegrationTests.swift */, 200000000000000000000006 /* StorageMigrationSmokeTests.swift */,);
+			path = ios/SoundCloudPersonalTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		500000000000000000000004 /* Products */ = {isa = PBXGroup; children = (200000000000000000000007 /* SoundCloudPersonal.app */, 200000000000000000000008 /* SoundCloudPersonalTests.xctest */,); name = Products; sourceTree = "<group>"; };
+		500000000000000000000005 /* Views */ = {isa = PBXGroup; children = (200000000000000000000003 /* CapabilityStatusView.swift */,); path = Views; sourceTree = "<group>"; };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		600000000000000000000001 /* SoundCloudPersonal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 700000000000000000000001 /* Build configuration list for SoundCloudPersonal */;
+			buildPhases = (400000000000000000000003 /* Sources */, 400000000000000000000001 /* Frameworks */, 400000000000000000000004 /* Resources */,);
+			buildRules = ();
+			dependencies = ();
+			name = SoundCloudPersonal;
+			packageProductDependencies = (300000000000000000000001 /* SoundCloudCore */,);
+			productName = SoundCloudPersonal;
+			productReference = 200000000000000000000007 /* SoundCloudPersonal.app */;
+			productType = "com.apple.product-type.application";
+		};
+		600000000000000000000002 /* SoundCloudPersonalTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 700000000000000000000002 /* Build configuration list for SoundCloudPersonalTests */;
+			buildPhases = (400000000000000000000005 /* Sources */, 400000000000000000000002 /* Frameworks */,);
+			buildRules = ();
+			dependencies = (800000000000000000000001 /* PBXTargetDependency */,);
+			name = SoundCloudPersonalTests;
+			packageProductDependencies = (300000000000000000000001 /* SoundCloudCore */,);
+			productName = SoundCloudPersonalTests;
+			productReference = 200000000000000000000008 /* SoundCloudPersonalTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		900000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = { LastUpgradeCheck = 1600; TargetAttributes = { 600000000000000000000001 = { CreatedOnToolsVersion = 16.0; }; 600000000000000000000002 = { CreatedOnToolsVersion = 16.0; TestTargetID = 600000000000000000000001; }; }; };
+			buildConfigurationList = 700000000000000000000003 /* Build configuration list for PBXProject */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (en, Base,);
+			mainGroup = 500000000000000000000001;
+			packageReferences = (A00000000000000000000001 /* XCLocalSwiftPackageReference "SoundCloudCore" */,);
+			productRefGroup = 500000000000000000000004 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (600000000000000000000001 /* SoundCloudPersonal */, 600000000000000000000002 /* SoundCloudPersonalTests */,);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		400000000000000000000004 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		400000000000000000000003 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (100000000000000000000001 /* SoundCloudPersonalApp.swift in Sources */, 100000000000000000000002 /* AppEnvironment.swift in Sources */, 100000000000000000000003 /* CapabilityStatusView.swift in Sources */,); runOnlyForDeploymentPostprocessing = 0; };
+		400000000000000000000005 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (100000000000000000000005 /* CapabilityAdapterIntegrationTests.swift in Sources */, 100000000000000000000006 /* StorageMigrationSmokeTests.swift in Sources */,); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		800000000000000000000001 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = 600000000000000000000001 /* SoundCloudPersonal */; targetProxy = 800000000000000000000002 /* PBXContainerItemProxy */; };
+/* End PBXTargetDependency section */
+
+/* Begin PBXContainerItemProxy section */
+		800000000000000000000002 /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = 900000000000000000000001 /* Project object */; proxyType = 1; remoteGlobalIDString = 600000000000000000000001; remoteInfo = SoundCloudPersonal; };
+/* End PBXContainerItemProxy section */
+
+/* Begin XCBuildConfiguration section */
+		710000000000000000000001 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = { SWIFT_VERSION = 5.9; }; name = Debug; };
+		710000000000000000000002 /* Release */ = {isa = XCBuildConfiguration; buildSettings = { SWIFT_VERSION = 5.9; }; name = Release; };
+		710000000000000000000003 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = { ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; INFOPLIST_FILE = ios/SoundCloudPersonal/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.personal.SoundCloudPersonal; PRODUCT_NAME = "$(TARGET_NAME)"; SOUNDCLOUD_STORAGE_SWIFTDATA = 1; SWIFT_VERSION = 5.9; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Debug; };
+		710000000000000000000004 /* Release */ = {isa = XCBuildConfiguration; buildSettings = { ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; INFOPLIST_FILE = ios/SoundCloudPersonal/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.personal.SoundCloudPersonal; PRODUCT_NAME = "$(TARGET_NAME)"; SOUNDCLOUD_STORAGE_SWIFTDATA = 1; SWIFT_VERSION = 5.9; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Release; };
+		710000000000000000000005 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = { BUNDLE_LOADER = "$(TEST_HOST)"; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.personal.SoundCloudPersonalTests; SOUNDCLOUD_STORAGE_SWIFTDATA = 1; SWIFT_VERSION = 5.9; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoundCloudPersonal.app/SoundCloudPersonal"; }; name = Debug; };
+		710000000000000000000006 /* Release */ = {isa = XCBuildConfiguration; buildSettings = { BUNDLE_LOADER = "$(TEST_HOST)"; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.personal.SoundCloudPersonalTests; SOUNDCLOUD_STORAGE_SWIFTDATA = 1; SWIFT_VERSION = 5.9; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoundCloudPersonal.app/SoundCloudPersonal"; }; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		700000000000000000000001 /* Build configuration list for SoundCloudPersonal */ = {isa = XCConfigurationList; buildConfigurations = (710000000000000000000003 /* Debug */, 710000000000000000000004 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		700000000000000000000002 /* Build configuration list for SoundCloudPersonalTests */ = {isa = XCConfigurationList; buildConfigurations = (710000000000000000000005 /* Debug */, 710000000000000000000006 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		700000000000000000000003 /* Build configuration list for PBXProject */ = {isa = XCConfigurationList; buildConfigurations = (710000000000000000000001 /* Debug */, 710000000000000000000002 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A00000000000000000000001 /* XCLocalSwiftPackageReference "SoundCloudCore" */ = {isa = XCLocalSwiftPackageReference; relativePath = .; };
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		300000000000000000000001 /* SoundCloudCore */ = {isa = XCSwiftPackageProductDependency; package = A00000000000000000000001 /* XCLocalSwiftPackageReference "SoundCloudCore" */; productName = SoundCloudCore; };
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 900000000000000000000001 /* Project object */;
+}
