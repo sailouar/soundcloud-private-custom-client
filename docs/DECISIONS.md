@@ -34,3 +34,20 @@ implemented in this phase.
 `LocalStore` is a protocol-only boundary. This phase does not create database
 files, download files, stream caches, or any unauthorized content-copying
 path. Streaming capability remains distinct from download authorization.
+
+## OAuth client confidentiality
+
+SoundCloud currently treats all registered clients as confidential, so the
+token exchange requires `client_secret`. The secret is a build-time
+configuration input (`OAuthConfiguration.clientSecret`), is redacted from all
+descriptions, and must not be committed. This is a documented limitation, not a
+reason to collect user passwords or switch to a password grant: a secret
+embedded in a distributed iOS binary is extractable, and the mitigation options
+must be reviewed before distribution.
+
+- Token storage boundary: `TokenStore` protocol-only in Phase 1; Keychain
+  adapter in Phase 2.
+- Token model: one `TokenBundle` record so a single-use refresh token is
+  replaced atomically.
+- Cloud-Mac evidence: pending. `swift test --filter OAuthPKCETests` and
+  `--filter OAuthCallbackTests` have not run.

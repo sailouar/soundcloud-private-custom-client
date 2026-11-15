@@ -14,3 +14,10 @@
   protocol-only `LocalStore` boundary, candidate iOS 17/SwiftData markers, and reproducible
   Windows/cloud-Mac verification instructions. Native verification remains pending without
   a cloud Mac.
+- Added the executable OAuth 2.1 + PKCE contract: official hosts, custom-scheme redirect
+  validation, state and one-time-code checks, token exchange, single-use refresh replacement,
+  redacted token models, and a protocol-only `TokenStore`. Cloud-Mac Swift execution remains
+  pending.
+- Added the documented API endpoint contract with official host and `OAuth` header
+  enforcement, typed refusals for unsupported operations, stream-only disposition, and
+  retryable/auth error classification. Cloud-Mac Swift execution remains pending.

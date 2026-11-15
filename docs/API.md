@@ -33,3 +33,48 @@ separately; no playback URL is accepted as a file source.
 
 The package and tests are authored on Windows, but `swift package describe` and `swift test`
 remain pending for the cloud-Mac lane because Swift/Xcode is unavailable on the authoring host.
+
+## Documented endpoint contract (Phase 1, Plan 01-03)
+
+`APIEndpoint` in `Sources/SoundCloudCore/API/APIEndpoint.swift` represents only operations that
+appear in the reviewed official OpenAPI document. Every request uses the official base URL
+`https://api.soundcloud.com` and the documented header `Authorization: OAuth <access token>`.
+
+| Kind | Method and path | Disposition |
+|------|-----------------|-------------|
+| `authenticatedProfile` | `GET /me` | read |
+| `searchTracks` | `GET /tracks?q=` | read |
+| `searchUsers` | `GET /users?q=` | read |
+| `searchPlaylists` | `GET /playlists?q=` | read |
+| `track` | `GET /tracks/{track_urn}` | read |
+| `user` | `GET /users/{user_urn}` | read |
+| `playlist` | `GET /playlists/{playlist_urn}` | read |
+| `likedTracks` | `GET /me/likes/tracks` | read |
+| `ownPlaylists` | `GET /me/playlists` | read |
+| `likeTrack` / `unlikeTrack` | `POST` / `DELETE /likes/tracks/{track_urn}` | write |
+| `followUser` / `unfollowUser` | `PUT` / `DELETE /me/followings/{user_urn}` | write |
+| `trackStreams` | `GET /tracks/{track_urn}/streams` | **stream only** |
+| `resolveURL` | `GET /resolve?url=` | read |
+| `disconnect` | `POST /disconnect` | write |
+
+Search is the resource collection with a `q` parameter (`/tracks`, `/users`, `/playlists`);
+the OpenAPI document contains no `/search` alias and no album resource. `streamOnly` endpoints
+report `allowsOfflineFile == false` for every disposition, because no documented endpoint grants
+an offline file in Phase 1.
+
+Path parameters are validated against an unreserved character set, so a track or user identifier
+cannot inject a path segment, query, fragment, scheme, or traversal sequence.
+
+### Typed unsupported operations
+
+`UnsupportedAPIOperation` enumerates operations the reviewed material does not support — album
+search, general downloads, original upload-file downloads, advertising controls, undocumented
+media-URL extraction, content-protection circumvention, web-page harvesting, and unpermitted
+downloading. Resolving one through `APIEndpoint.resolve(_:)` throws
+`APIPolicyError.unsupportedOperation`; no caller can build a request for it.
+
+### Error classification
+
+Documented statuses are preserved as `APIError.httpStatus`. `401` is an authentication failure,
+`403` is a permission failure, and `429`, `500`, `503`, and `504` are marked retryable with
+backoff. A typed error is never converted into an optimistic capability state.
