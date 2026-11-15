@@ -26,3 +26,8 @@
   URL extraction, DRM/access-control bypass, ad skipping, unauthorized downloading), the
   testing matrix, and the Windows-runnable documentation audit. Cloud-Mac execution of the
   Swift suites remains pending.
+- Added the Phase 2 personal-build authentication adapter: on-device OAuth app credentials
+  in the Keychain, `ASWebAuthenticationSession` sign-in, `URLSession` token transport, a
+  sign-in/restore/sign-out coordinator with typed recoverable failures, the registered
+  `soundcloudpersonal` URL scheme, and a signed-team-free AltStore IPA build script.
+  Compilation, device sign-in, and the IPA build remain pending on a cloud Mac.

@@ -38,16 +38,26 @@ path. Streaming capability remains distinct from download authorization.
 ## OAuth client confidentiality
 
 SoundCloud currently treats all registered clients as confidential, so the
-token exchange requires `client_secret`. The secret is a build-time
-configuration input (`OAuthConfiguration.clientSecret`), is redacted from all
-descriptions, and must not be committed. This is a documented limitation, not a
-reason to collect user passwords or switch to a password grant: a secret
-embedded in a distributed iOS binary is extractable, and the mitigation options
-must be reviewed before distribution.
+token exchange requires `client_secret`. The secret is a runtime input
+(`OAuthConfiguration.clientSecret`), is redacted from all descriptions, and is
+never committed or embedded in the build.
 
-- Token storage boundary: `TokenStore` protocol-only in Phase 1; Keychain
-  adapter in Phase 2.
-- Token model: one `TokenBundle` record so a single-use refresh token is
-  replaced atomically.
+## Personal AltStore distribution
+
+The app is a single-owner personal build delivered by AltStore/AltServer, not an
+App Store product. Consequences:
+
+- The client ID and secret are entered once on the device and stored in the
+  Keychain, so no secret is committed to the repository or baked into the IPA.
+- Free-Apple-ID signing expires after 7 days and must be refreshed by AltServer;
+  the app data (including the Keychain session) survives re-signing.
+- There is no paid entitlement, push, or background-download entitlement
+  assumption. Background audio uses the standard audio session.
+- The owner must register a SoundCloud developer app and the exact redirect URI
+  `soundcloudpersonal://oauth/callback` before the first sign-in.
+
+- Token storage: the Keychain adapter stores one JSON record per session so a
+  single-use refresh token is replaced atomically.
 - Cloud-Mac evidence: pending. `swift test --filter OAuthPKCETests` and
-  `--filter OAuthCallbackTests` have not run.
+  `--filter OAuthCallbackTests` have not run, and the app-target adapters have
+  not been compiled or exercised on a simulator or device.

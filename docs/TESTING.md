@@ -23,6 +23,22 @@ or content-protection circumvention.
 | `CapabilityAdapterIntegrationTests` | `ios/SoundCloudPersonalTests/CapabilityAdapterIntegrationTests.swift` | `MockAPITransport -> SoundCloudAPI -> AppEnvironment -> CapabilityStatusViewModel`; runs in the Xcode test target, not the SwiftPM core tests. |
 | `StorageMigrationSmokeTests` | `ios/SoundCloudPersonalTests/StorageMigrationSmokeTests.swift` | Candidate SwiftData relationship and migration; runs in the Xcode test target. |
 
+## Phase 2 manual device checks
+
+These require a signed-in device or simulator with network access and the owner's
+SoundCloud developer app; they cannot run on the Windows host.
+
+| Check | Expected result |
+|-------|-----------------|
+| First launch with no credentials | Setup screen; no network call, no crash. |
+| Save credentials | Values appear only in the Keychain item; relaunch restores the setup and skips re-entry. |
+| Sign in | System browser opens the official authorization page; returning via `soundcloudpersonal://oauth/callback` shows the signed-in state. |
+| Cancel sign-in | "Sign-in was cancelled." with a retry action; no partial session stored. |
+| Kill and relaunch while signed in | Session restores from the Keychain; an expired access token refreshes once. |
+| Sign out | Session record is gone; app credentials remain for the next sign-in. |
+| Reset configuration | Both Keychain records are gone; the setup screen returns. |
+| AltServer re-sign after 7 days | Same bundle identifier; the stored session still restores. |
+
 ## Windows authoring lane
 
 The Windows host has no Swift toolchain or Xcode, so it runs artifact, policy, and
@@ -33,6 +49,10 @@ $required = @(
   "Package.swift",
   "Sources/SoundCloudCore/Auth/OAuthConfiguration.swift",
   "Sources/SoundCloudCore/API/APIEndpoint.swift",
+  "Sources/SoundCloudCore/Support/ErrorDescriptions.swift",
+  "ios/SoundCloudPersonal/Auth/AuthenticationCoordinator.swift",
+  "ios/SoundCloudPersonal/Auth/KeychainStore.swift",
+  "ios/SoundCloudPersonal/Views/AuthenticationView.swift",
   "ios/SoundCloudPersonalTests/OAuthPKCETests.swift",
   "ios/SoundCloudPersonalTests/APIContractTests.swift",
   "SoundCloudPersonal.xcodeproj/xcshareddata/xcschemes/SoundCloudPersonal.xcscheme"

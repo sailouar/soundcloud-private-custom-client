@@ -20,6 +20,10 @@ Plans:
 ### Phase 2: Authentication and Secure Session
 **Goal:** Sign in through the supported flow, persist tokens in Keychain, restore sessions, and handle expiry/sign-out.
 **Requirements:** AUTH-01, AUTH-02, AUTH-03
+**Plans:** 1 plan
+
+Plans:
+- [x] 02-01-PLAN.md — Personal sign-in, Keychain session, and AltStore build lane (authored; verification pending)
 
 ### Phase 3: Discovery and Account Library
 **Goal:** Browse, search, inspect details, and access supported likes, follows, and playlists with honest capability/error states.
@@ -48,8 +52,8 @@ Plans:
 
 | Phase | Status | Requirements |
 |-------|--------|--------------|
-| 1 | Pending | 3 |
-| 2 | Pending | 3 |
+| 1 | Authored — cloud-Mac verification pending | 3 |
+| 2 | Authored — device verification pending | 3 |
 | 3 | Pending | 5 |
 | 4 | Pending | 4 |
 | 5 | Pending | 6 |

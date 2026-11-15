@@ -32,6 +32,17 @@ response.
 S256 challenge. It never imports SwiftUI, UIKit, AVFoundation, or Security; the app
 target supplies those adapters.
 
+## Phase 2 app adapters
+
+| Adapter | File | Platform boundary |
+|---------|------|-------------------|
+| Keychain records and token store | `ios/SoundCloudPersonal/Auth/KeychainStore.swift` | `Security` generic-password items; one JSON session record; credentials and tokens never touch files. |
+| System browser sign-in | `ios/SoundCloudPersonal/Auth/BrowserAuthenticator.swift` | `ASWebAuthenticationSession` returns only the registered custom-scheme callback. |
+| OAuth network transport | `ios/SoundCloudPersonal/Auth/URLSessionOAuthTransport.swift` | `URLSession` against the documented token endpoint only. |
+| Sign-in coordinator | `ios/SoundCloudPersonal/Auth/AuthenticationCoordinator.swift` | Credential validation, transaction lifetime, restore/refresh/sign-out, typed retryable failures. |
+| Account UI | `ios/SoundCloudPersonal/Views/AuthenticationView.swift` | Setup and account states rendered from the coordinator. |
+
+
 ## Source-to-document reconciliation
 
 This source-to-document table keeps each documentation claim anchored to a
@@ -48,6 +59,7 @@ that fails when a stable source claim is missing from these documents.
 | Tokens are redacted, refreshed as a single-use replacement, and stored behind `TokenStore` | `Sources/SoundCloudCore/Auth/TokenModels.swift`, `TokenStore.swift`, `AuthenticationService.swift` | `ios/SoundCloudPersonalTests/OAuthPKCETests.swift` |
 | API requests use `api.soundcloud.com` and `OAuth` auth only | `Sources/SoundCloudCore/API/APIEndpoint.swift` | `ios/SoundCloudPersonalTests/APIContractTests.swift` |
 | The SwiftUI adapter renders injected core state | `ios/SoundCloudPersonal/AppEnvironment.swift` | `ios/SoundCloudPersonalTests/CapabilityAdapterIntegrationTests.swift` |
+| Sign-in uses the system browser and a Keychain session | `ios/SoundCloudPersonal/Auth/AuthenticationCoordinator.swift`, `KeychainStore.swift` | Cloud-Mac/device run (pending) |
 | SwiftData candidate relationship/migration | `Sources/SoundCloudCore/Storage/LocalStore.swift`, `ios/SoundCloudPersonal/Views/CapabilityStatusView.swift` | `ios/SoundCloudPersonalTests/StorageMigrationSmokeTests.swift` |
 | Cloud-Mac project, scheme, and iOS 17.0 target | `SoundCloudPersonal.xcodeproj/project.pbxproj`, shared scheme | `docs/BUILD.md` cloud-Mac lane (execution pending) |
 

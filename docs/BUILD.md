@@ -72,3 +72,56 @@ configuration through the cloud Mac/Xcode environment; never commit them.
 Expected outputs are an `.xcarchive` and, only when intentionally configured,
 an exported signed `.ipa`. This phase does not require an archive and does
 not claim one exists.
+
+The app target sets `CODE_SIGN_STYLE = Automatic` and leaves
+`DEVELOPMENT_TEAM` unset, so a fresh checkout opens without a signing team. Set
+a team locally for a direct device run; do not commit it.
+
+## Personal AltStore lane
+
+This project is a single-owner sideload, not an App Store release. The build
+contains no SoundCloud app secret: the owner enters the client ID and client
+secret in the app on first launch, and they are stored in the device Keychain.
+
+### Before the first sign-in
+
+1. Create a SoundCloud developer app (for example through the developer portal's
+   *Your Apps* page) and note its client ID and client secret.
+2. Register the redirect URI exactly as `soundcloudpersonal://oauth/callback`.
+   The scheme is declared in `ios/SoundCloudPersonal/Info.plist`; if you change
+   it, change both places together.
+3. Do not paste the secret into a tracked file. This repository has no
+   build-time secret setting.
+
+### Build the unsigned IPA on macOS
+
+```bash
+chmod +x scripts/build-altstore-ipa.sh
+./scripts/build-altstore-ipa.sh
+```
+
+The script archives with `CODE_SIGNING_ALLOWED=NO`, packages
+`build/SoundCloudPersonal.ipa`, and leaves signing to AltServer. Without a Mac,
+the IPA cannot be produced and the build remains unverified.
+
+### Install with AltStore
+
+1. Install AltServer on Windows and AltStore Classic on the iPhone with the same
+   Apple ID (free Apple ID is sufficient; a paid developer account is not
+   required).
+2. Keep the iPhone and the AltServer computer on the same network, then sideload
+   `build/SoundCloudPersonal.ipa` from AltStore.
+3. Trust the developer certificate on the device if iOS asks.
+4. Launch the app, enter the SoundCloud client ID and client secret, and complete
+   the system-browser sign-in.
+5. Refresh the app at least every 7 days through AltServer. The Keychain session
+   survives re-signing because the bundle identifier does not change.
+
+### What is still unverified
+
+- `swift test`, `xcodebuild -list`, simulator tests, and the IPA build have not
+  run on the Windows authoring host.
+- The Keychain, `ASWebAuthenticationSession`, and `URLSession` adapters are
+  authored but have not been compiled or exercised on a simulator or device.
+- SoundCloud may require a paid plan to register the developer app; confirm this
+  on the owner's account before treating sign-in as blocked by code.

@@ -69,7 +69,7 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | PLAT-01, API-01, API-02 | Phase 1 | In progress — contracts authored; Windows doc audit passed; cloud-Mac verification pending |
-| AUTH-01..03 | Phase 2 | Pending |
+| AUTH-01..03 | Phase 2 | Authored — Keychain/browser/transport adapters and sign-in UI added; device verification pending |
 | DISC-01..03, SOCIAL-01..02 | Phase 3 | Pending |
 | PLAY-01..04 | Phase 4 | Pending |
 | DL-01..06 | Phase 5 | Pending |
