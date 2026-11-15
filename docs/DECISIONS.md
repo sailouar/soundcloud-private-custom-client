@@ -1,4 +1,4 @@
-# Phase 1 Platform Decisions
+# Platform Decisions
 
 ## Deployment target
 

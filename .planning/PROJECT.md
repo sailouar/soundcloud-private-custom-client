@@ -35,6 +35,7 @@ The owner can reliably find and play their SoundCloud music offline without dupl
 
 - The initial workspace contained only `Task.md`; no source tree or existing iOS project is present.
 - Development occurs on Windows 11 with VS Code and no local Mac, so local iOS compilation and signing cannot be assumed.
+- Distribution is a personal AltStore/AltServer sideload with a free Apple ID (7-day refresh), not an App Store release.
 - The first release is offline-first for personal use, but API capability validation is a hard prerequisite for download work.
 - The requested local library must use the SoundCloud track ID as its unique identity and must not remove shared files when a playlist is deleted.
 

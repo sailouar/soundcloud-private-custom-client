@@ -20,7 +20,7 @@ public enum OAuthConfigurationError: Error, Equatable, Sendable {
 /// - API base: `https://api.soundcloud.com`
 ///
 /// Mobile clients must register a custom protocol redirect URI. The client
-/// secret is supplied from build configuration and is never committed or
+/// secret is supplied by the app adapter at runtime and is never committed or
 /// logged; `description` redacts it.
 public struct OAuthConfiguration: Equatable, Sendable {
     public static let authorizationEndpoint = URL(string: "https://secure.soundcloud.com/authorize")!
