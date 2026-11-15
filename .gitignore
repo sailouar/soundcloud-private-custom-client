@@ -1,0 +1,12 @@
+# macOS / Xcode output
+build/
+DerivedData/
+*.xcarchive
+*.ipa
+xcuserdata/
+*.xcuserstate
+.DS_Store
+
+# Local secrets: never commit SoundCloud app credentials
+Secrets.xcconfig
+*.xcconfig.local
