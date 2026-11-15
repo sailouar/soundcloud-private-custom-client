@@ -21,3 +21,8 @@
 - Added the documented API endpoint contract with official host and `OAuth` header
   enforcement, typed refusals for unsupported operations, stream-only disposition, and
   retryable/auth error classification. Cloud-Mac Swift execution remains pending.
+- Reconciled the Phase 1 documentation with the implemented source and tests: added a
+  source-to-document claim table, the explicit legal prohibitions (scraping, hidden stream
+  URL extraction, DRM/access-control bypass, ad skipping, unauthorized downloading), the
+  testing matrix, and the Windows-runnable documentation audit. Cloud-Mac execution of the
+  Swift suites remains pending.

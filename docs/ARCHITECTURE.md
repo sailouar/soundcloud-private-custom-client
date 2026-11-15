@@ -16,3 +16,42 @@ The SwiftUI app target lives under `ios/SoundCloudPersonal/` and consumes the
 Foundation-only `SoundCloudCore` package. Capability state is injected through
 `AppEnvironment` and rendered without inferring support from a URL or stream
 response.
+
+## Phase 1 core contracts
+
+| Area | Stable symbols | Source | Documented behavior |
+|------|----------------|--------|---------------------|
+| Capability | `CapabilityState`, `CapabilityOperation`, `CapabilityRegistry` | `Sources/SoundCloudCore/API/` | Supported, unsupported, permission-gated, and temporarily unavailable states; never inferred from a URL. |
+| Transport | `HTTPTransport`, `MockAPITransport` | `Sources/SoundCloudCore/Transport/` | Method/path fixtures that preserve HTTP status and API messages. |
+| Authentication | `OAuthConfiguration`, `OAuthTransaction`, `OAuthCallback`, `TokenBundle`, `TokenStore`, `AuthenticationService` | `Sources/SoundCloudCore/Auth/` | Official OAuth 2.1 + PKCE, exact redirect/state validation, single-use refresh replacement, protocol-only secure storage. |
+| API endpoints | `APIEndpoint`, `APIEndpointKind`, `UnsupportedAPIOperation` | `Sources/SoundCloudCore/API/APIEndpoint.swift` | Documented operations only, official host and `OAuth` header, typed refusals, stream-only disposition. |
+| Download policy | `DownloadAuthorization` | `Sources/SoundCloudCore/Downloads/DownloadAuthorization.swift` | Deny until an explicit official entitlement exists; playback never authorizes a file. |
+| Storage | `LocalStore` | `Sources/SoundCloudCore/Storage/LocalStore.swift` | Protocol-only; the SwiftData adapter is deferred until the cloud-Mac smoke test passes. |
+
+`SoundCloudCore` imports only Foundation and, where available, CryptoKit for the
+S256 challenge. It never imports SwiftUI, UIKit, AVFoundation, or Security; the app
+target supplies those adapters.
+
+## Source-to-document reconciliation
+
+This source-to-document table keeps each documentation claim anchored to a
+concrete declaration or test. `docs/TESTING.md` describes the automated audit
+that fails when a stable source claim is missing from these documents.
+
+| Claim | Source anchor | Test anchor |
+|-------|---------------|-------------|
+| Capability states are typed and never inferred from a URL | `Sources/SoundCloudCore/API/Capability.swift` | `ios/SoundCloudPersonalTests/CapabilityMatrixTests.swift` |
+| Sanitized fixtures preserve HTTP/API errors | `Sources/SoundCloudCore/Transport/MockAPITransport.swift` | `ios/SoundCloudPersonalTests/MockTransportTests.swift` |
+| Streaming cannot authorize an offline file | `Sources/SoundCloudCore/Downloads/DownloadAuthorization.swift` | `ios/SoundCloudPersonalTests/DownloadAuthorizationTests.swift` |
+| OAuth uses the official hosts, S256 PKCE, and state | `Sources/SoundCloudCore/Auth/OAuthConfiguration.swift`, `PKCE.swift` | `ios/SoundCloudPersonalTests/OAuthPKCETests.swift` |
+| Callbacks require exact redirect, state, and one-time codes | `Sources/SoundCloudCore/Auth/OAuthCallback.swift` | `ios/SoundCloudPersonalTests/OAuthCallbackTests.swift` |
+| Tokens are redacted, refreshed as a single-use replacement, and stored behind `TokenStore` | `Sources/SoundCloudCore/Auth/TokenModels.swift`, `TokenStore.swift`, `AuthenticationService.swift` | `ios/SoundCloudPersonalTests/OAuthPKCETests.swift` |
+| API requests use `api.soundcloud.com` and `OAuth` auth only | `Sources/SoundCloudCore/API/APIEndpoint.swift` | `ios/SoundCloudPersonalTests/APIContractTests.swift` |
+| The SwiftUI adapter renders injected core state | `ios/SoundCloudPersonal/AppEnvironment.swift` | `ios/SoundCloudPersonalTests/CapabilityAdapterIntegrationTests.swift` |
+| SwiftData candidate relationship/migration | `Sources/SoundCloudCore/Storage/LocalStore.swift`, `ios/SoundCloudPersonal/Views/CapabilityStatusView.swift` | `ios/SoundCloudPersonalTests/StorageMigrationSmokeTests.swift` |
+| Cloud-Mac project, scheme, and iOS 17.0 target | `SoundCloudPersonal.xcodeproj/project.pbxproj`, shared scheme | `docs/BUILD.md` cloud-Mac lane (execution pending) |
+
+CloudScrobble is an architectural reference for a split core/app package and
+mock-backed tests only. It is not an authority on SoundCloud permissions, and no
+downloader behavior from any third-party project is reproduced here.
+

@@ -19,6 +19,26 @@ Source: [SoundCloud API Guide](https://developers.soundcloud.com/docs/api/) (acc
 
 SoundCloud's [API Terms of Use](https://developers.soundcloud.com/docs/api/terms-of-use) state that user content rights remain with uploaders, usage restrictions must be respected, and the API must not be used to rip, capture, copy, or circumvent content protections. Personal use does not remove those API restrictions.
 
+## Legal and policy boundary
+
+The client implements only documented API behavior. The following are explicitly out of scope and have no implementation path:
+
+- scraping of SoundCloud web pages or undocumented endpoints;
+- hidden stream URL extraction;
+- DRM or access-control bypass;
+- ad skipping or advertising controls;
+- unauthorized downloading, including turning a stream response into a file.
+
+Streaming is playback, not download authorization. `DownloadAuthorization` denies a
+download request unless a positive, track-specific, official entitlement is supplied
+separately, and `EndpointDisposition.streamOnly` reports `allowsOfflineFile == false`.
+When an operation is unavailable, the client surfaces a typed unsupported or
+permission-gated state instead of a false success.
+
+The source-to-document reconciliation for these claims is in
+[`ARCHITECTURE.md`](ARCHITECTURE.md#source-to-document-reconciliation), and the audit
+procedure is in [`TESTING.md`](TESTING.md#source-to-document-audit).
+
 ## Phase 1 capability tracer
 
 `SoundCloudCore` records API outcomes through a Foundation-only transport boundary. Sanitized

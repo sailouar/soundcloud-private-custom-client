@@ -61,6 +61,15 @@ uses the replacement token.
 `TokenStore` is protocol-only in Phase 1. The Keychain adapter must store the bundle as one
 logical record and delete it on explicit sign-out.
 
+## Authorization is not download authorization
+
+Signing in proves who the user is; it never grants an offline file. A
+`DownloadAuthorization` decision requires a separate, positive, track-specific
+official entitlement, and a streaming response remains playback only. See
+[`API.md`](API.md) for the legal boundary and
+[`ARCHITECTURE.md`](ARCHITECTURE.md#source-to-document-reconciliation) for the
+source-to-document reconciliation.
+
 ## Known limitations
 
 - **Client confidentiality:** SoundCloud currently treats all clients as confidential, so the
