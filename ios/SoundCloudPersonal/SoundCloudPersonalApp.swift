@@ -21,9 +21,26 @@ struct SoundCloudPersonalApp: App {
 
     var body: some Scene {
         WindowGroup {
-            CapabilityStatusView(response: environment.capabilityResponse)
+            RootView(environment: environment)
                 .task {
-                    environment.load()
+                    await environment.start()
+                }
+        }
+    }
+}
+
+private struct RootView: View {
+    @ObservedObject var environment: AppEnvironment
+
+    var body: some View {
+        TabView {
+            AuthenticationView(coordinator: environment.authentication)
+                .tabItem {
+                    Label("Account", systemImage: "person.crop.circle")
+                }
+            CapabilityStatusView(response: environment.capabilityResponse)
+                .tabItem {
+                    Label("Capability", systemImage: "waveform")
                 }
         }
     }
