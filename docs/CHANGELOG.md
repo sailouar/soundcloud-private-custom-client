@@ -10,3 +10,7 @@
 - Added the Foundation-only capability tracer, sanitized fixture transport, typed capability
   states, and deny-by-default download authorization regression tests. Cloud-Mac Swift
   verification remains pending.
+- Added the canonical SwiftUI app/test source layout, Xcode project and shared scheme,
+  protocol-only `LocalStore` boundary, candidate iOS 17/SwiftData markers, and reproducible
+  Windows/cloud-Mac verification instructions. Native verification remains pending without
+  a cloud Mac.

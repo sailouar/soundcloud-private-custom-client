@@ -17,7 +17,14 @@ let package = Package(
         .testTarget(
             name: "SoundCloudCoreTests",
             dependencies: ["SoundCloudCore"],
-            path: "ios/SoundCloudPersonalTests"
+            path: "ios/SoundCloudPersonalTests",
+            exclude: [
+                "CapabilityAdapterIntegrationTests.swift",
+                "StorageMigrationSmokeTests.swift"
+            ],
+            swiftSettings: [
+                .define("SOUNDCLOUD_STORAGE_SWIFTDATA")
+            ]
         )
     ]
 )
