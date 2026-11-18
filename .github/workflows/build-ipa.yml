@@ -24,6 +24,16 @@ jobs:
       - name: Xcode project sanity
         run: xcodebuild -list -project SoundCloudPersonal.xcodeproj
 
+      - name: Build app for simulator (warms the local package first)
+        run: |
+          SIMULATOR_UDID="$(xcrun simctl list devices available | awk -F '[()]' '/iPhone/{print $2; exit}')"
+          test -n "$SIMULATOR_UDID"
+          xcodebuild build \
+            -project SoundCloudPersonal.xcodeproj \
+            -scheme SoundCloudPersonal \
+            -configuration Debug \
+            -destination "id=$SIMULATOR_UDID"
+
       - name: App + integration tests on simulator
         run: |
           SIMULATOR_UDID="$(xcrun simctl list devices available | awk -F '[()]' '/iPhone/{print $2; exit}')"
