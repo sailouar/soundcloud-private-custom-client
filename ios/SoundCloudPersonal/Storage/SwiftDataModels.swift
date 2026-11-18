@@ -1,4 +1,5 @@
 import Foundation
+import SoundCloudCore
 import SwiftData
 
 // MARK: - SwiftData entities
@@ -22,8 +23,10 @@ final class LocalTrackEntity {
     var errorMessage: String?
     var addedAt: Date
 
+    // Inverse declared only on this side; the entry side stays plain to avoid
+    // a circular macro reference between the two @Relationship declarations.
     @Relationship(inverse: \LocalPlaylistEntry.track)
-    var entries: [LocalPlaylistEntry]?
+    var entries: [LocalPlaylistEntry] = []
 
     init(
         trackID: Int64,
@@ -60,7 +63,7 @@ final class LocalPlaylistEntity {
     var isLocalOnly: Bool
 
     @Relationship(deleteRule: .cascade, inverse: \LocalPlaylistEntry.playlist)
-    var entries: [LocalPlaylistEntry]?
+    var entries: [LocalPlaylistEntry] = []
 
     init(
         id: UUID = UUID(),
@@ -79,7 +82,7 @@ final class LocalPlaylistEntity {
 final class LocalPlaylistEntry {
     var index: Int
 
-    @Relationship(inverse: \LocalTrackEntity.entries)
+    @Relationship
     var track: LocalTrackEntity?
 
     @Relationship(inverse: \LocalPlaylistEntity.entries)

@@ -88,7 +88,7 @@ actor SwiftDataLocalStore: LocalLibraryStore {
 
         // Remove playlist references first; the file itself is deleted by the
         // download layer, not by the store.
-        let entries = entity.entries ?? []
+        let entries = entity.entries
         for entry in entries {
             context.delete(entry)
         }
@@ -104,7 +104,7 @@ actor SwiftDataLocalStore: LocalLibraryStore {
         )
         descriptor.fetchLimit = 1
         guard let entity = try context.fetch(descriptor).first else { return [] }
-        return (entity.entries ?? [])
+        return entity.entries
             .compactMap { $0.playlist?.title }
             .sorted()
     }
@@ -141,7 +141,7 @@ actor SwiftDataLocalStore: LocalLibraryStore {
         entity.isLocalOnly = playlist.isLocalOnly
 
         // Reconcile entries with the ordered track IDs.
-        let existingEntries = (entity.entries ?? []).sorted { $0.index < $1.index }
+        let existingEntries = entity.entries.sorted { $0.index < $1.index }
         for entry in existingEntries {
             context.delete(entry)
         }
@@ -154,7 +154,7 @@ actor SwiftDataLocalStore: LocalLibraryStore {
             guard let trackEntity = try context.fetch(trackDescriptor).first else { continue }
             let entry = LocalPlaylistEntry(index: offset, track: trackEntity, playlist: entity)
             context.insert(entry)
-            entity.entries?.append(entry)
+            entity.entries.append(entry)
         }
         try context.save()
     }
@@ -200,7 +200,7 @@ actor SwiftDataLocalStore: LocalLibraryStore {
     }
 
     private func record(from entity: LocalPlaylistEntity) -> LocalPlaylistRecord {
-        let ordered = (entity.entries ?? [])
+        let ordered = entity.entries
             .sorted { $0.index < $1.index }
             .compactMap { $0.track?.trackID }
         return LocalPlaylistRecord(
