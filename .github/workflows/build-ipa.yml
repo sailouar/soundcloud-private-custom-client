@@ -13,7 +13,9 @@ permissions:
 
 jobs:
   test-and-build:
-    runs-on: macos-latest
+    # Xcode 16 (macos-15) matches the project (CreatedOnToolsVersion 16.0) and
+    # keeps the local Swift package's target triple consistent with the app.
+    runs-on: macos-15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
