@@ -15,7 +15,7 @@ private actor FakeDownloadSession: DownloadSession {
         id: UUID,
         source: URL,
         destination: URL,
-        onProgress: @Sendable (Double) -> Void
+        onProgress: @Sendable @escaping (Double) -> Void
     ) async throws {
         started.append((id, source, destination))
         if hangUntilCancelled {

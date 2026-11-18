@@ -56,7 +56,7 @@ final class URLSessionDownloadSession: NSObject, URLSessionDownloadDelegate, Dow
         id: UUID,
         source: URL,
         destination: URL,
-        onProgress: @Sendable (Double) -> Void
+        onProgress: @Sendable @escaping (Double) -> Void
     ) async throws {
         let delegate = DownloadDelegate(destination: destination, onProgress: onProgress)
         lock.lock()

@@ -134,7 +134,7 @@ public protocol DownloadSession: Sendable {
         id: UUID,
         source: URL,
         destination: URL,
-        onProgress: @Sendable (Double) -> Void
+        onProgress: @Sendable @escaping (Double) -> Void
     ) async throws
 
     func cancel(id: UUID) async

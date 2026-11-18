@@ -97,7 +97,8 @@ final class PlayerService: ObservableObject {
     func playableItem(for track: SCTrack, streamURL: URL?) async -> PlayableItem? {
         if preferLocalPlayback, let library {
             let resolution = try? await PlaybackResolver.resolve(trackID: track.id, library: library)
-            if case .localFile(let path) = resolution, let fileURL = URL(fileURLWithPath: path) {
+            if case .localFile(let path) = resolution {
+                let fileURL = URL(fileURLWithPath: path)
                 let details = (try? await library.track(withID: track.id)) ?? Self.details(for: track)
                 return .local(fileURL: fileURL, track: details)
             }
