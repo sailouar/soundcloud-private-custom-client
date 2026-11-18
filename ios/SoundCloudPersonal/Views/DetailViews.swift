@@ -31,7 +31,7 @@ struct TrackDetailView: View {
                         } label: {
                             VStack {
                                 Image(systemName: viewModel.isLiked ? "heart.fill" : "heart")
-                                    .foregroundStyle(viewModel.isLiked ? .orange : .primary)
+                                    .foregroundStyle(viewModel.isLiked ? Color.orange : Color.primary)
                                 Text("Like").font(.caption).foregroundStyle(.secondary)
                             }
                         }
@@ -134,7 +134,7 @@ struct ArtistView: View {
                 } label: {
                     Text(viewModel.isFollowing ? "Following" : "Follow")
                         .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(viewModel.isFollowing ? .primary : .black)
+                        .foregroundStyle(viewModel.isFollowing ? Color.primary : Color.black)
                         .padding(.horizontal, 20)
                         .padding(.vertical, 8)
                         .background(viewModel.isFollowing ? Color.secondary.opacity(0.3) : Color.orange)

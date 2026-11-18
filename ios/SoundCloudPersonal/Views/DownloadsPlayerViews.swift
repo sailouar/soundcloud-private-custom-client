@@ -225,7 +225,7 @@ struct PlayerView: View {
                             player.setShuffle(!player.shuffle)
                         } label: {
                             Image(systemName: "shuffle")
-                                .foregroundStyle(player.shuffle ? .orange : .secondary)
+                                .foregroundStyle(player.shuffle ? Color.orange : Color.secondary)
                         }
                         Button(action: player.previous) {
                             Image(systemName: "backward.fill").font(.title2)
@@ -240,7 +240,7 @@ struct PlayerView: View {
                         }
                         Button(action: player.cycleRepeatMode) {
                             Image(systemName: player.repeatMode == .one ? "repeat.1" : "repeat")
-                                .foregroundStyle(player.repeatMode == .off ? .secondary : .orange)
+                                .foregroundStyle(player.repeatMode == .off ? Color.secondary : Color.orange)
                         }
                     }
                     if !player.queue.isEmpty {
