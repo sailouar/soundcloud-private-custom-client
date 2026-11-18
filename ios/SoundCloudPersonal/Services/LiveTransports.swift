@@ -40,16 +40,18 @@ actor CoordinatorTokenProvider: AccessTokenProvider {
 /// Live `DownloadSession` using URLSession's download task with a delegate so
 /// progress, cancellation, and completion are all real.
 final class URLSessionDownloadSession: NSObject, URLSessionDownloadDelegate, DownloadSession, @unchecked Sendable {
-    private let session: URLSession
+    // lazy: the delegate is self, so the session cannot be built before super.init.
+    private lazy var session: URLSession = {
+        let configuration = URLSessionConfiguration.background(withIdentifier: "com.personal.SoundCloudPersonal.downloads")
+        configuration.isDiscretionary = false
+        configuration.sessionSendsLaunchEvents = true
+        return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+    }()
     private var delegates: [UUID: DownloadDelegate] = [:]
     private let lock = NSLock()
 
     override init() {
-        let configuration = URLSessionConfiguration.background(withIdentifier: "com.personal.SoundCloudPersonal.downloads")
-        configuration.isDiscretionary = false
-        configuration.sessionSendsLaunchEvents = true
         super.init()
-        self.session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }
 
     func download(
