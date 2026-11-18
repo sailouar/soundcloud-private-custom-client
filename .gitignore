@@ -10,3 +10,5 @@ xcuserdata/
 # Local secrets: never commit SoundCloud app credentials
 Secrets.xcconfig
 *.xcconfig.local
+.build/
+build/
