@@ -85,7 +85,8 @@ final class LocalPlaylistEntry {
     @Relationship
     var track: LocalTrackEntity?
 
-    @Relationship(inverse: \LocalPlaylistEntity.entries)
+    // Inverse declared on the playlist side only (see LocalPlaylistEntity).
+    @Relationship
     var playlist: LocalPlaylistEntity?
 
     init(index: Int = 0, track: LocalTrackEntity? = nil, playlist: LocalPlaylistEntity? = nil) {
