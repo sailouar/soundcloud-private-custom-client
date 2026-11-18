@@ -68,12 +68,12 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| PLAT-01, API-01, API-02 | Phase 1 | In progress — contracts authored; Windows doc audit passed; cloud-Mac verification pending |
-| AUTH-01..03 | Phase 2 | Authored — Keychain/browser/transport adapters and sign-in UI added; device verification pending |
-| DISC-01..03, SOCIAL-01..02 | Phase 3 | Pending |
-| PLAY-01..04 | Phase 4 | Pending |
-| DL-01..06 | Phase 5 | Pending |
-| LIST-01..04 | Phase 6 | Pending |
+| PLAT-01, API-01, API-02 | Phase 1 | Authored — contracts implemented; Windows doc audit passed; CI (macOS runner) verification pending |
+| AUTH-01..03 | Phase 2 | Authored — Keychain/browser/transport adapters and sign-in UI; device verification pending |
+| DISC-01..03, SOCIAL-01..02 | Phase 3 | Authored — resource client + Home/Search/Library UI + like/follow writes; CI verification pending |
+| PLAY-01..04 | Phase 4 | Authored — AVFoundation player, offline-first resolver, background audio, lock-screen; CI verification pending |
+| DL-01..06 | Phase 5 | Authored — entitlement-gated DownloadManager, dedup, SwiftData library, atomic files; CI verification pending |
+| LIST-01..04 | Phase 6 | Authored — PlaylistSync + local collections with shared track references; CI verification pending |
 
 **Coverage:**
 - v1 requirements: 26 total

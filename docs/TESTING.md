@@ -103,3 +103,18 @@ xcodebuild test -project SoundCloudPersonal.xcodeproj -scheme SoundCloudPersonal
 
 These commands have not run yet. Until they do, the authored suites are reported as
 pending, not passed.
+
+## Phase 3-6 suites (authored; run on the GitHub Actions macOS lane)
+
+| Suite | File | Proves |
+|-------|------|--------|
+| `ResourceModelTests` | `ios/SoundCloudPersonalTests/ResourceModelTests.swift` | Documented snake_case payloads decode into `SCTrack`/`SCUser`/`SCPlaylist`/collections; progressive transcoding is preferred; artwork size rewrite; entitlement requires `downloadable`. |
+| `DownloadManagerTests` | `ios/SoundCloudPersonalTests/DownloadManagerTests.swift` | Authorized download completes and persists; track-ID dedup (never twice); denial without uploader permission or confirmed capability; playlist batch skips local tracks; cancel; retry after failure. |
+| `PlaylistSyncTests` | `ios/SoundCloudPersonalTests/PlaylistSyncTests.swift` | Missing-vs-local split, dedup of remote IDs, remote-order reconcile, local tracks survive remote removal. |
+| `PlaybackResolverTests` | `ios/SoundCloudPersonalTests/PlaybackResolverTests.swift` | Offline-first playback resolves to the local file only when completed with a path. |
+
+## CI lane
+
+`.github/workflows/build-ipa.yml` (public repo = free macOS runner) runs `swift test`,
+simulator `xcodebuild test`, and `scripts/build-altstore-ipa.sh`, publishing the unsigned
+IPA as an artifact. Until a run is green, suites are reported as pending, not passed.

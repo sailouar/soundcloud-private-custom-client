@@ -66,3 +66,15 @@ that fails when a stable source claim is missing from these documents.
 CloudScrobble is an architectural reference for a split core/app package and
 mock-backed tests only. It is not an authority on SoundCloud permissions, and no
 downloader behavior from any third-party project is reproduced here.
+
+## Implemented app layer (Phases 3-6, authored — CI verification pending)
+
+| Area | Files | Notes |
+|------|-------|-------|
+| Resource client | `Sources/SoundCloudCore/API/{Models,ResourceTransport,SoundCloudResources}.swift` | Search, profiles, likes/follows, playlists, stream resolution (stream-only). |
+| Downloads | `Sources/SoundCloudCore/Downloads/{DownloadJob,DownloadManager}.swift` | Per-track entitlement gate, track-ID dedup, atomic temp-to-library moves, progress/cancel/retry. |
+| Library | `Sources/SoundCloudCore/Storage/{LocalLibrary,InMemoryLocalStore}.swift`, `ios/.../Storage/{SwiftDataModels,SwiftDataLocalStore}.swift` | Protocol boundary + SwiftData adapter; playlists reference shared track files. |
+| Playlists | `Sources/SoundCloudCore/Playlists/PlaylistSync.swift` | Missing-vs-local planning and remote-order reconciliation. |
+| Playback | `Sources/SoundCloudCore/Playback/PlaybackResolver.swift`, `ios/.../Services/PlayerService.swift` | Offline-first resolution; AVFoundation queue, background audio, Now Playing + remote commands. |
+| UI | `ios/SoundCloudPersonal/Views/*.swift`, `ViewModels/*.swift` | 5 tabs (Home/Search/Library/Downloads/Player), dark theme, orange accent, detail sheets, sign-in gate. |
+| CI | `.github/workflows/build-ipa.yml` | Free macOS runner on the public repo: tests + unsigned IPA artifact. |

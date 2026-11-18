@@ -5,7 +5,7 @@
 See: `.planning/PROJECT.md` (updated 2026-11-15)
 
 **Core value:** The owner can reliably find and play their SoundCloud music offline without duplicate local files or misleading download behavior.
-**Current focus:** Phase 2 - Authentication and Secure Session (Plan 02-01 authored; device/IPA verification pending)
+**Current focus:** All phases 1-6 authored. Verification runs on the public GitHub repo's macOS Actions lane (`sailouar/soundcloud-private-custom-client`, branch `main`); device sign-in still pending.
 
 ## Current Position
 
@@ -15,7 +15,7 @@ See: `.planning/PROJECT.md` (updated 2026-11-15)
 - Plan 01-03 added the OAuth 2.1 + PKCE contract, token/refresh lifecycle, callback validation, and the documented API endpoint contract.
 - Plan 01-04 reconciled API, authentication, architecture, testing, and changelog documentation and passed the Windows source-to-document audit.
 - Plan 02-01 added the personal AltStore sign-in path: on-device Keychain credentials, `ASWebAuthenticationSession`, `URLSession` token transport, a restore/refresh/sign-out coordinator, typed error descriptions, the registered URL scheme, and an unsigned IPA build script. All Swift/iOS execution remains pending on a cloud Mac or device.
-- Next action: build the unsigned IPA on macOS, run the Swift/Xcode suites, install with AltServer, and complete a real SoundCloud sign-in with the owner's developer app.
+- Next action: watch the GitHub Actions run on `main` (swift test, simulator tests, unsigned IPA artifact), download the IPA, sideload with AltServer/AltStore or Sideloadly, and complete a real SoundCloud sign-in with the owner's developer app.
 
 ## Decisions
 

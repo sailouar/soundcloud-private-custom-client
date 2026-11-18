@@ -52,12 +52,12 @@ Plans:
 
 | Phase | Status | Requirements |
 |-------|--------|--------------|
-| 1 | Authored — cloud-Mac verification pending | 3 |
+| 1 | Authored — CI verification pending (GitHub Actions macOS lane) | 3 |
 | 2 | Authored — device verification pending | 3 |
-| 3 | Pending | 5 |
-| 4 | Pending | 4 |
-| 5 | Pending | 6 |
-| 6 | Pending | 4 |
+| 3 | Authored — CI verification pending | 5 |
+| 4 | Authored — CI verification pending | 4 |
+| 5 | Authored — CI verification pending | 6 |
+| 6 | Authored — CI verification pending | 4 |
 
 ---
 *Created: 2026-11-15*

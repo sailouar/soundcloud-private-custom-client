@@ -9,3 +9,19 @@ Phase 1 records SwiftData as the candidate technology at iOS 17.0, with
 cloud-Mac `testSwiftDataRelationshipAndMigration` smoke test remains required
 to confirm deployment support, relationship queries, and save/reload behavior.
 No persistence implementation or database files are claimed in this phase.
+
+## Implementation (Phase 5, authored)
+
+SwiftData entities live in `ios/SoundCloudPersonal/Storage/SwiftDataModels.swift`:
+
+- `LocalTrackEntity` — one row per SoundCloud track ID (`@Attribute(.unique)`), owns the
+  local file path, status, progress, metadata, artwork URL, timestamps.
+- `LocalPlaylistEntity` — collection with ordered entries; cascade delete removes entries
+  only, never track files.
+- `LocalPlaylistEntry` — ordered join record (`index`, `track`, `playlist`).
+
+`SwiftDataLocalStore` (`Storage/SwiftDataLocalStore.swift`) implements the core
+`LocalLibraryStore` protocol on a single actor; `InMemoryLocalStore` serves previews and
+tests. Deleting a track removes its entries first and warns via
+`playlistTitlesReferencing`. The cloud-Mac/CI smoke test
+(`StorageMigrationSmokeTests`) still has to confirm relationship and save/reload behavior.

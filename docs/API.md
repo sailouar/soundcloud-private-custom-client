@@ -98,3 +98,27 @@ downloading. Resolving one through `APIEndpoint.resolve(_:)` throws
 Documented statuses are preserved as `APIError.httpStatus`. `401` is an authentication failure,
 `403` is a permission failure, and `429`, `500`, `503`, and `504` are marked retryable with
 backoff. A typed error is never converted into an optimistic capability state.
+
+## Resource client (implemented, Phase 3+)
+
+`SoundCloudResources` (`Sources/SoundCloudCore/API/SoundCloudResources.swift`) is the live
+read/write client used by the UI. Every request is built through `APIEndpoint`, so host,
+scheme, OAuth header, and path-parameter validation are enforced in one place; the app
+supplies a `ResourceTransport` (URLSession) and an `AccessTokenProvider` (Keychain-backed,
+refreshing near expiry).
+
+- Search: `searchTracks`, `searchUsers`, `searchPlaylists` (paginated `SCCollection`, `nextHref`).
+- Details: `track(urn:)`, `user(urn:)`, `playlist(urn:)`, `resolve(url:)`, `me()`.
+- Account library: `likedTracks`, `ownPlaylists`.
+- Social writes: `likeTrack`/`unlikeTrack` (`POST`/`DELETE /likes/tracks/{urn}`),
+  `followUser`/`unfollowUser` (`PUT`/`DELETE /me/followings/{urn}`).
+- Streaming: `streamURL(for:)` prefers the `progressive` transcoding from the track's
+  documented `media.transcodings`, falls back to `GET /tracks/{urn}/streams`, and resolves
+  the transcoding API URL with an authorized GET. The resolved media URL is stream-only and
+  is never persisted as an offline file.
+- Models decode with `.convertFromSnakeCase` (`SCUser`, `SCTrack`, `SCPlaylist`, `SCMedia`,
+  `SCTranscoding`, `SCResolvedStream`); all fields beyond identity are optional.
+
+There is still no documented album search and no documented download endpoint; album search
+remains a typed refusal, and downloads stay gated on the per-track entitlement
+(`SCTrack.downloadable` + an API-provided `download_url`), never on stream availability.
