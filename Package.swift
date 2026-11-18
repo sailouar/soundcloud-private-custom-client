@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         // Provides the CryptoKit module on Windows/Linux; on Apple platforms
         // it forwards to the system CryptoKit, so the iOS build is unchanged.
-        .package(url: "https://github.com/apple/swift-crypto", from: "1.5.0")
+        .package(url: "https://github.com/apple/swift-crypto", from: "2.0.3")
     ],
     targets: [
         .target(
