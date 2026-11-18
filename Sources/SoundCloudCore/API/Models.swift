@@ -194,7 +194,7 @@ public struct SCMedia: Codable, Equatable, Sendable {
     /// then any mp3, then anything else.
     public var preferredTranscoding: SCTranscoding? {
         guard let transcodings, !transcodings.isEmpty else { return nil }
-        return transcodings.first { $0.format?.protocol == "progressive" }
+        return transcodings.first { $0.format?.`protocol` == "progressive" }
             ?? transcodings.first { $0.format?.mimeType == "audio/mpeg" }
             ?? transcodings.first
     }
@@ -219,11 +219,11 @@ public struct SCTranscoding: Codable, Equatable, Sendable, Identifiable {
 }
 
 public struct SCTranscodingFormat: Codable, Equatable, Sendable {
-    public let protocol: String?
+    public let `protocol`: String?
     public let mimeType: String?
 
-    public init(protocol: String? = nil, mimeType: String? = nil) {
-        self.protocol = `protocol`
+    public init(`protocol`: String? = nil, mimeType: String? = nil) {
+        self.`protocol` = `protocol`
         self.mimeType = mimeType
     }
 }

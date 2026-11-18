@@ -175,8 +175,9 @@ public actor DownloadManager {
     // MARK: Internals
 
     private func start(job: DownloadJob) {
-        let task = Task { [weak self] in
-            await self?.run(job: job)
+        let task = Task<Void, Never> { [weak self] in
+            guard let self else { return }
+            await self.run(job: job)
         }
         tasks[job.id] = task
     }

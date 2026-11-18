@@ -4,7 +4,10 @@ import PackageDescription
 let package = Package(
     name: "SoundCloudCore",
     platforms: [
-        .iOS(.v17)
+        .iOS(.v17),
+        // Host builds (`swift test` on a macOS runner) need a modern macOS
+        // target for concurrency (Task) and CryptoKit (SHA256).
+        .macOS(.v14)
     ],
     products: [
         .library(name: "SoundCloudCore", targets: ["SoundCloudCore"])
