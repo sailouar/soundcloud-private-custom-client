@@ -25,12 +25,8 @@ final class CapabilityAdapterIntegrationTests: XCTestCase {
                 reason: "The fixture requires an authenticated user."
             )
         )
-        XCTAssertEqual(
-            CapabilityStatusViewModel(response: environment.capabilityResponse),
-            CapabilityStatusViewModel(
-                title: "Requires user permission",
-                detail: "The fixture requires an authenticated user."
-            )
-        )
+        let viewModel = CapabilityStatusViewModel(response: environment.capabilityResponse)
+        XCTAssertEqual(viewModel.title, "Requires user permission")
+        XCTAssertEqual(viewModel.detail, "The fixture requires an authenticated user.")
     }
 }
