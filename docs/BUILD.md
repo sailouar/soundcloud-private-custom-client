@@ -117,21 +117,23 @@ the IPA cannot be produced and the build remains unverified.
 5. Refresh the app at least every 7 days through AltServer. The Keychain session
    survives re-signing because the bundle identifier does not change.
 
-### What is still unverified
+### Verification status
 
-- `swift test`, `xcodebuild -list`, simulator tests, and the IPA build have not
-  run on the Windows authoring host.
-- The Keychain, `ASWebAuthenticationSession`, and `URLSession` adapters are
-  authored but have not been compiled or exercised on a simulator or device.
+- Verified on GitHub Actions `macos-15` (Xcode 16): `swift test` (63/63 core
+  tests), simulator `xcodebuild test` (20 app/integration tests, 1 skipped),
+  simulator build, and the unsigned IPA build all pass.
+- Not yet exercised on a physical device: Keychain storage,
+  `ASWebAuthenticationSession` sign-in, and real SoundCloud API responses.
 - SoundCloud may require a paid plan to register the developer app; confirm this
   on the owner's account before treating sign-in as blocked by code.
 
 ## GitHub Actions lane (no Mac at all)
 
-If the repository is **public**, GitHub's hosted `macos-latest` runners are
+If the repository is **public**, GitHub's hosted macOS runners are
 free (macOS minutes bill at 10×, but public repos are not charged). The
-workflow `.github/workflows/build-ipa.yml` runs on every push to `main` and on
-manual dispatch:
+workflow `.github/workflows/build-ipa.yml` is pinned to `macos-15` (Xcode 16,
+matching the project's CreatedOnToolsVersion 16.0) and runs on every push to
+`main` and on manual dispatch:
 
 1. `swift test` — the SoundCloudCore package suites.
 2. `xcodebuild -list` and simulator `xcodebuild test` — the app target and

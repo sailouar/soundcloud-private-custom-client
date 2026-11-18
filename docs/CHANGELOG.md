@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased - 2026-11-18
+
+- GitHub Actions lane is green end-to-end on `macos-15` (Xcode 16): 63/63 core
+  package tests, 20 app/integration tests (1 skipped), simulator build, and the
+  unsigned AltStore IPA artifact `SoundCloudPersonal-unsigned-ipa`.
+- Fixed along the way: `ENABLE_TESTABILITY` on the app Debug config, public
+  `CapabilityStatusViewModel(response:)` usage in tests, and `CFBundleExecutable`
+  in the app `Info.plist` (required because `GENERATE_INFOPLIST_FILE = NO`).
+
 ## Unreleased - 2026-11-15
 
 - Initialized GSD project tracking from `Task.md`.
