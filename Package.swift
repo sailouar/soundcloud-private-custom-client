@@ -9,13 +9,13 @@ let package = Package(
         // deployment target for concurrency (Task) and CryptoKit (SHA256).
         .macOS(.v14)
     ],
+    products: [
+        .library(name: "SoundCloudCore", targets: ["SoundCloudCore"])
+    ],
     dependencies: [
         // Provides the CryptoKit module on Windows/Linux; on Apple platforms
         // it forwards to the system CryptoKit, so the iOS build is unchanged.
         .package(url: "https://github.com/apple/swift-crypto", from: "1.5.0")
-    ],
-    products: [
-        .library(name: "SoundCloudCore", targets: ["SoundCloudCore"])
     ],
     targets: [
         .target(
