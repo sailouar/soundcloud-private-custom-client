@@ -5,6 +5,7 @@ import XCTest
 
 private actor FakeDownloadSession: DownloadSession {
     var started: [(id: UUID, source: URL, destination: URL)] = []
+    var startedCount: Int { started.count }
     var cancelled: [UUID] = []
     var failNext: Bool = false
     var hangUntilCancelled: Bool = false
@@ -172,6 +173,12 @@ final class DownloadManagerTests: XCTestCase {
             authorizedTrack(1), authorizedTrack(2), authorizedTrack(3)
         ])
         XCTAssertEqual(enqueued.count, 2)
+        // Jobs start asynchronously; wait until both actually hit the session.
+        let deadline = Date().addingTimeInterval(5)
+        while Date() < deadline {
+            if await session.startedCount >= 2 { break }
+            try await Task.sleep(nanoseconds: 50_000_000)
+        }
         let starts = await session.started
         XCTAssertEqual(Set(starts.map { $0.source.absoluteString }), [
             "https://api.soundcloud.com/tracks/1/download",

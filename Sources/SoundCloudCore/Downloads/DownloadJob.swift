@@ -25,7 +25,7 @@ public struct TrackDownloadEntitlement: Equatable, Sendable {
     public init(track: SCTrack) {
         self.trackID = track.id
         self.permittedByUploader = track.isDownloadPermittedByUploader
-        self.officialFileURL = track.downloadURL
+        self.officialFileURL = track.downloadUrl
     }
 
     public var isAuthorized: Bool {

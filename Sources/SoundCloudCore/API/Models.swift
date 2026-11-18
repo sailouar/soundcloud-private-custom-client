@@ -82,7 +82,7 @@ public struct SCTrack: Codable, Equatable, Sendable, Identifiable {
     public let downloadable: Bool?
     /// Present in an official API response only when SoundCloud itself exposes
     /// a download location for this track. Never constructed or scraped.
-    public let downloadURL: URL?
+    public let downloadUrl: URL?
     public let media: SCMedia?
 
     public init(
@@ -115,7 +115,7 @@ public struct SCTrack: Codable, Equatable, Sendable, Identifiable {
         self.description = description
         self.streamable = streamable
         self.downloadable = downloadable
-        self.downloadURL = downloadURL
+        self.downloadUrl = downloadURL
         self.media = media
     }
 

@@ -36,7 +36,7 @@ final class ResourceModelTests: XCTestCase {
         XCTAssertEqual(track.user?.username, "artist")
         XCTAssertTrue(track.streamable == true)
         XCTAssertTrue(track.isDownloadPermittedByUploader)
-        XCTAssertEqual(track.downloadURL?.absoluteString, "https://api.soundcloud.com/tracks/123/download")
+        XCTAssertEqual(track.downloadUrl?.absoluteString, "https://api.soundcloud.com/tracks/123/download")
         XCTAssertEqual(track.durationText, "3:02")
         // Progressive transcoding is preferred over HLS for playback.
         XCTAssertEqual(
