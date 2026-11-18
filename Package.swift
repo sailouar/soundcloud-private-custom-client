@@ -21,7 +21,7 @@ let package = Package(
         .target(
             name: "SoundCloudCore",
             dependencies: [
-                .product(name: "CryptoKit", package: "swift-crypto")
+                .product(name: "Crypto", package: "swift-crypto") // provides the CryptoKit module
             ],
             path: "Sources/SoundCloudCore"
         ),
