@@ -238,6 +238,13 @@ public actor DownloadManager {
 
     private func updateProgress(jobID: UUID, progress: Double) async {
         guard var job = jobs[jobID] else { return }
+        // A late progress tick must never resurrect a finished job.
+        switch job.state {
+        case .queued, .running:
+            break
+        default:
+            return
+        }
         job.updating(.running(progress: min(1, max(0, progress))))
         jobs[jobID] = job
         if let track = try? await library.track(withID: job.trackID) {
