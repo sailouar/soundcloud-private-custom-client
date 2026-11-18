@@ -1,0 +1,46 @@
+# Build and test the iOS app on GitHub's hosted macOS runners — no local Mac
+# needed. Produces an UNSIGNED IPA that AltServer/Sideloadly re-signs with the
+# owner's free Apple ID. macOS runners are free for PUBLIC repositories.
+name: Build iOS IPA
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Core package tests (SwiftPM)
+        run: swift test
+
+      - name: Xcode project sanity
+        run: xcodebuild -list -project SoundCloudPersonal.xcodeproj
+
+      - name: App + integration tests on simulator
+        run: |
+          SIMULATOR_UDID="$(xcrun simctl list devices available | awk -F '[()]' '/iPhone/{print $2; exit}')"
+          test -n "$SIMULATOR_UDID"
+          xcodebuild test \
+            -project SoundCloudPersonal.xcodeproj \
+            -scheme SoundCloudPersonal \
+            -destination "id=$SIMULATOR_UDID"
+
+      - name: Build unsigned IPA for AltStore
+        run: |
+          chmod +x scripts/build-altstore-ipa.sh
+          ./scripts/build-altstore-ipa.sh
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SoundCloudPersonal-unsigned-ipa
+          path: build/SoundCloudPersonal.ipa
+          retention-days: 90

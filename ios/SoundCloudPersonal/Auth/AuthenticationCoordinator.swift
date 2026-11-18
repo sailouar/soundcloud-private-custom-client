@@ -133,6 +133,19 @@ final class AuthenticationCoordinator: ObservableObject {
         }
     }
 
+    /// Returns a usable access token, refreshing the stored session first when
+    /// it is near expiry. Used by the API resource client's token provider.
+    func currentAccessToken() async throws -> String {
+        guard let service else { throw AuthenticationError.notAuthenticated }
+        guard let bundle = try await service.storedBundle() else {
+            throw AuthenticationError.notAuthenticated
+        }
+        if bundle.needsRefresh() {
+            return try await service.refreshSession().accessToken
+        }
+        return bundle.accessToken
+    }
+
     /// Retries the step that failed without requiring the owner to re-enter
     /// configuration.
     func retry() async {

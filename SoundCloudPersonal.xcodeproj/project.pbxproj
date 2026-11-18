@@ -19,6 +19,19 @@
 		10000000000000000000000B /* OAuthAppCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000C /* OAuthAppCredentials.swift */; };
 		10000000000000000000000C /* URLSessionOAuthTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000D /* URLSessionOAuthTransport.swift */; };
 		10000000000000000000000D /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000E /* AuthenticationView.swift */; };
+		100000000000000000100000 /* LiveTransports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000001000000 /* LiveTransports.swift */; };
+		100000000000000000100002 /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000001000002 /* PlayerService.swift */; };
+		100000000000000000100003 /* SwiftDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000001000003 /* SwiftDataModels.swift */; };
+		100000000000000000100005 /* SwiftDataLocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000001000005 /* SwiftDataLocalStore.swift */; };
+		100000000000000000100006 /* BrowseViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000001000006 /* BrowseViewModels.swift */; };
+		100000000000000000100008 /* LibraryViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000001000008 /* LibraryViewModels.swift */; };
+		100000000000000000100009 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000001000009 /* Components.swift */; };
+		10000000000000000010000A /* TabViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000100000A /* TabViews.swift */; };
+		10000000000000000010000B /* DownloadsPlayerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000100000B /* DownloadsPlayerViews.swift */; };
+		10000000000000000010000C /* DetailViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000100000C /* DetailViews.swift */; };
+		10000000000000000010000D /* ResourceModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000100000D /* ResourceModelTests.swift */; };
+		10000000000000000010000E /* PlaylistSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000100000E /* PlaylistSyncTests.swift */; };
+		10000000000000000010000F /* DownloadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000100000F /* DownloadManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +49,19 @@
 		20000000000000000000000C /* OAuthAppCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAppCredentials.swift; sourceTree = "<group>"; };
 		20000000000000000000000D /* URLSessionOAuthTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionOAuthTransport.swift; sourceTree = "<group>"; };
 		20000000000000000000000E /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		200000000000000001000000 /* LiveTransports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTransports.swift; sourceTree = "<group>"; };
+		200000000000000001000002 /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
+		200000000000000001000003 /* SwiftDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataModels.swift; sourceTree = "<group>"; };
+		200000000000000001000005 /* SwiftDataLocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataLocalStore.swift; sourceTree = "<group>"; };
+		200000000000000001000006 /* BrowseViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewModels.swift; sourceTree = "<group>"; };
+		200000000000000001000008 /* LibraryViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModels.swift; sourceTree = "<group>"; };
+		200000000000000001000009 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		20000000000000000100000A /* TabViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViews.swift; sourceTree = "<group>"; };
+		20000000000000000100000B /* DownloadsPlayerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsPlayerViews.swift; sourceTree = "<group>"; };
+		20000000000000000100000C /* DetailViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViews.swift; sourceTree = "<group>"; };
+		20000000000000000100000D /* ResourceModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceModelTests.swift; sourceTree = "<group>"; };
+		20000000000000000100000E /* PlaylistSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistSyncTests.swift; sourceTree = "<group>"; };
+		20000000000000000100000F /* DownloadManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,19 +77,22 @@
 		};
 		500000000000000000000002 /* SoundCloudPersonal */ = {
 			isa = PBXGroup;
-			children = (200000000000000000000001 /* SoundCloudPersonalApp.swift */, 200000000000000000000002 /* AppEnvironment.swift */, 500000000000000000000006 /* Auth */, 500000000000000000000005 /* Views */, 200000000000000000000004 /* Info.plist */,);
+			children = (200000000000000000000001 /* SoundCloudPersonalApp.swift */, 200000000000000000000002 /* AppEnvironment.swift */, 500000000000000000000006 /* Auth */, 500000000000000000000005 /* Views */, 200000000000000000000004 /* Info.plist */,500000000000000000100001 /* Services */, 500000000000000000100004 /* Storage */, 500000000000000000100007 /* ViewModels */, );
 			path = ios/SoundCloudPersonal;
 			sourceTree = SOURCE_ROOT;
 		};
 		500000000000000000000003 /* SoundCloudPersonalTests */ = {
 			isa = PBXGroup;
-			children = (200000000000000000000005 /* CapabilityAdapterIntegrationTests.swift */, 200000000000000000000006 /* StorageMigrationSmokeTests.swift */,);
+			children = (200000000000000000000005 /* CapabilityAdapterIntegrationTests.swift */, 200000000000000000000006 /* StorageMigrationSmokeTests.swift */,20000000000000000100000D /* ResourceModelTests.swift */, 20000000000000000100000E /* PlaylistSyncTests.swift */, 20000000000000000100000F /* DownloadManagerTests.swift */, );
 			path = ios/SoundCloudPersonalTests;
 			sourceTree = SOURCE_ROOT;
 		};
 		500000000000000000000004 /* Products */ = {isa = PBXGroup; children = (200000000000000000000007 /* SoundCloudPersonal.app */, 200000000000000000000008 /* SoundCloudPersonalTests.xctest */,); name = Products; sourceTree = "<group>"; };
-		500000000000000000000005 /* Views */ = {isa = PBXGroup; children = (200000000000000000000003 /* CapabilityStatusView.swift */, 20000000000000000000000E /* AuthenticationView.swift */,); path = Views; sourceTree = "<group>"; };
+		500000000000000000000005 /* Views */ = {isa = PBXGroup; children = (200000000000000000000003 /* CapabilityStatusView.swift */, 20000000000000000000000E /* AuthenticationView.swift */,200000000000000001000009 /* Components.swift */, 20000000000000000100000A /* TabViews.swift */, 20000000000000000100000B /* DownloadsPlayerViews.swift */, 20000000000000000100000C /* DetailViews.swift */, ); path = Views; sourceTree = "<group>"; };
 		500000000000000000000006 /* Auth */ = {isa = PBXGroup; children = (200000000000000000000009 /* AuthenticationCoordinator.swift */, 20000000000000000000000A /* BrowserAuthenticator.swift */, 20000000000000000000000B /* KeychainStore.swift */, 20000000000000000000000C /* OAuthAppCredentials.swift */, 20000000000000000000000D /* URLSessionOAuthTransport.swift */,); path = Auth; sourceTree = "<group>"; };
+		500000000000000000100001 /* Services */ = {isa = PBXGroup; children = (200000000000000001000000 /* LiveTransports.swift */, 200000000000000001000002 /* PlayerService.swift */,); path = Services; sourceTree = "<group>"; };
+		500000000000000000100004 /* Storage */ = {isa = PBXGroup; children = (200000000000000001000003 /* SwiftDataModels.swift */, 200000000000000001000005 /* SwiftDataLocalStore.swift */,); path = Storage; sourceTree = "<group>"; };
+		500000000000000000100007 /* ViewModels */ = {isa = PBXGroup; children = (200000000000000001000006 /* BrowseViewModels.swift */, 200000000000000001000008 /* LibraryViewModels.swift */,); path = ViewModels; sourceTree = "<group>"; };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -116,8 +145,8 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		400000000000000000000003 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (100000000000000000000001 /* SoundCloudPersonalApp.swift in Sources */, 100000000000000000000002 /* AppEnvironment.swift in Sources */, 100000000000000000000003 /* CapabilityStatusView.swift in Sources */, 100000000000000000000008 /* AuthenticationCoordinator.swift in Sources */, 100000000000000000000009 /* BrowserAuthenticator.swift in Sources */, 10000000000000000000000A /* KeychainStore.swift in Sources */, 10000000000000000000000B /* OAuthAppCredentials.swift in Sources */, 10000000000000000000000C /* URLSessionOAuthTransport.swift in Sources */, 10000000000000000000000D /* AuthenticationView.swift in Sources */,); runOnlyForDeploymentPostprocessing = 0; };
-		400000000000000000000005 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (100000000000000000000005 /* CapabilityAdapterIntegrationTests.swift in Sources */, 100000000000000000000006 /* StorageMigrationSmokeTests.swift in Sources */,); runOnlyForDeploymentPostprocessing = 0; };
+		400000000000000000000003 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (100000000000000000000001 /* SoundCloudPersonalApp.swift in Sources */, 100000000000000000000002 /* AppEnvironment.swift in Sources */, 100000000000000000000003 /* CapabilityStatusView.swift in Sources */, 100000000000000000000008 /* AuthenticationCoordinator.swift in Sources */, 100000000000000000000009 /* BrowserAuthenticator.swift in Sources */, 10000000000000000000000A /* KeychainStore.swift in Sources */, 10000000000000000000000B /* OAuthAppCredentials.swift in Sources */, 10000000000000000000000C /* URLSessionOAuthTransport.swift in Sources */, 10000000000000000000000D /* AuthenticationView.swift in Sources */,100000000000000000100000 /* LiveTransports.swift in Sources */, 100000000000000000100002 /* PlayerService.swift in Sources */, 100000000000000000100003 /* SwiftDataModels.swift in Sources */, 100000000000000000100005 /* SwiftDataLocalStore.swift in Sources */, 100000000000000000100006 /* BrowseViewModels.swift in Sources */, 100000000000000000100008 /* LibraryViewModels.swift in Sources */, 100000000000000000100009 /* Components.swift in Sources */, 10000000000000000010000A /* TabViews.swift in Sources */, 10000000000000000010000B /* DownloadsPlayerViews.swift in Sources */, 10000000000000000010000C /* DetailViews.swift in Sources */, ); runOnlyForDeploymentPostprocessing = 0; };
+		400000000000000000000005 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (100000000000000000000005 /* CapabilityAdapterIntegrationTests.swift in Sources */, 100000000000000000000006 /* StorageMigrationSmokeTests.swift in Sources */,10000000000000000010000D /* ResourceModelTests.swift in Sources */, 10000000000000000010000E /* PlaylistSyncTests.swift in Sources */, 10000000000000000010000F /* DownloadManagerTests.swift in Sources */, ); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */

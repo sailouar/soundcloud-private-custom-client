@@ -125,3 +125,71 @@ the IPA cannot be produced and the build remains unverified.
   authored but have not been compiled or exercised on a simulator or device.
 - SoundCloud may require a paid plan to register the developer app; confirm this
   on the owner's account before treating sign-in as blocked by code.
+
+## GitHub Actions lane (no Mac at all)
+
+If the repository is **public**, GitHub's hosted `macos-latest` runners are
+free (macOS minutes bill at 10×, but public repos are not charged). The
+workflow `.github/workflows/build-ipa.yml` runs on every push to `main` and on
+manual dispatch:
+
+1. `swift test` — the SoundCloudCore package suites.
+2. `xcodebuild -list` and simulator `xcodebuild test` — the app target and
+   integration tests, which also closes the pending cloud-Mac verification.
+3. `scripts/build-altstore-ipa.sh` — archives with signing disabled and
+   packages `build/SoundCloudPersonal.ipa`.
+4. Uploads the IPA as the `SoundCloudPersonal-unsigned-ipa` artifact
+   (90-day retention).
+
+No secrets are required: the build is unsigned and contains no SoundCloud
+credentials. Download the IPA from the workflow run's **Artifacts** section,
+then sideload it with AltServer/Sideloadly (Windows) or SideStore, using a free
+Apple ID. Keep the repo public; a private repo consumes billed macOS minutes.
+
+## Second-Mac (friend) build handoff
+
+The owner does not need their own Mac. Any macOS machine with Xcode installed
+can produce the installable IPA, because the build is unsigned and AltServer
+re-signs it with the owner's Apple ID on the Windows PC.
+
+### What the friend needs to do
+
+1. Clone this repository (or receive a zip) and check out the working branch.
+2. Optionally verify the code first — this closes the pending cloud-Mac
+   verification and is strongly recommended:
+
+   ```bash
+   swift package describe
+   swift test
+   xcodebuild -list -project SoundCloudPersonal.xcodeproj
+   # simulator tests, as in the cloud-Mac lane above
+   ```
+
+3. Build the unsigned IPA:
+
+   ```bash
+   chmod +x scripts/build-altstore-ipa.sh
+   ./scripts/build-altstore-ipa.sh
+   # -> build/SoundCloudPersonal.ipa
+   ```
+
+4. Send `build/SoundCloudPersonal.ipa` back to the owner through any channel.
+   The IPA contains no credentials or signing material.
+
+### What the friend must NOT do
+
+- Do not set a development team or sign with a personal certificate. The
+  project is configured `CODE_SIGN_STYLE = Automatic` with no team on purpose;
+  the owner's AltServer signs with the owner's Apple ID. Signing with the
+  friend's Apple ID would tie the app to the friend's account.
+- Do not paste the owner's SoundCloud client ID or client secret into any
+  tracked file, build setting, or command history that gets committed. The
+  repo intentionally has no build-time secret setting.
+- Do not commit anything back unless asked; the handoff is one-directional.
+
+### What the owner does with the IPA
+
+Install AltServer on the Windows PC and AltStore (or SideStore) on the iPhone
+with the same free Apple ID, sideload `SoundCloudPersonal.ipa`, trust the
+developer certificate, then enter the SoundCloud client ID and secret inside
+the app on first launch. Refresh at least every 7 days.

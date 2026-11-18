@@ -4,7 +4,7 @@ Personal native iOS client architecture for SoundCloud browsing, streaming, and 
 
 ## Status
 
-The Foundation-only core contracts and the iOS app shell are implemented and documented: capability states, the OAuth 2.1 + PKCE contract, the documented API endpoint policy, the Keychain-backed personal sign-in path, and the AltStore build lane. Native compilation, simulator tests, device sign-in, and IPA packaging remain pending on a cloud Mac.
+All six roadmap phases are now **implemented in source** and documented: the Foundation-only core (capability states, OAuth 2.1 + PKCE contract, endpoint policy, resource models, download manager with dedup and atomic files, playlist reconciliation, offline-first playback resolver), the iOS app shell (Keychain sign-in, 5-tab SwiftUI interface, AVFoundation player with background audio and lock-screen controls, SwiftData local library), the AltStore build lane, and unit tests for the new core logic. Native compilation, simulator tests, device sign-in, and IPA packaging remain **pending on a Mac** (friend's Mac or cloud Mac — see `docs/BUILD.md`, "Second-Mac build handoff"). Nothing is claimed as compiled or device-verified yet.
 
 The app is a single-owner personal build delivered through AltStore/AltServer with a free Apple ID (7-day refresh), not an App Store release. No SoundCloud app secret is committed or embedded in the build; the owner enters the client ID and secret on the device.
 

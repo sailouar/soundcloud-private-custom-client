@@ -31,3 +31,25 @@
   sign-in/restore/sign-out coordinator with typed recoverable failures, the registered
   `soundcloudpersonal` URL scheme, and a signed-team-free AltStore IPA build script.
   Compilation, device sign-in, and the IPA build remain pending on a cloud Mac.
+- Added a second-Mac (friend) build handoff to `docs/BUILD.md`: clone, optionally
+  run the Swift/Xcode verification suites, run `scripts/build-altstore-ipa.sh`,
+  and return the unsigned IPA — no signing identity or SoundCloud secret involved.
+- Implemented roadmap Phases 3-6 in source (authored; cloud-Mac verification pending):
+  - Core: resource models (`SCUser`/`SCTrack`/`SCPlaylist`/collections/transcodings),
+    live `SoundCloudResources` client over `ResourceTransport` + `AccessTokenProvider`
+    (search, profiles, likes, follows, playlists, stream resolution — stream-only),
+    `DownloadManager` actor (per-track entitlement gate, track-ID dedup, atomic temp-to-library
+    moves, progress/cancel/retry/failure states), `LocalLibraryStore` boundary with an
+    in-memory implementation, `PlaylistSync` reconciliation, and the offline-first
+    `PlaybackResolver` (a downloaded track plays from the local file, not the stream).
+  - App: `URLSession` resource transport, `URLSessionDownloadSession`, AVFoundation
+    `PlayerService` (queue, shuffle, repeat, background audio, Now Playing + remote
+    commands), SwiftData entities + `SwiftDataLocalStore` (track owns the file; playlists
+    reference tracks via ordered entries), view models, and the 5-tab UI
+    (Home/Search/Library/Downloads/Player) with track/artist detail sheets.
+  - Tests: `ResourceModelTests`, `DownloadManagerTests`, `PlaylistSyncTests`,
+    `PlaybackResolverTests`. All new files registered in `project.pbxproj`;
+    `UIBackgroundModes = audio` added to `Info.plist`.
+  - Downloads remain deny-by-default: they start only when the uploader's documented
+    `downloadable` flag is set AND the API response itself provides a download location,
+    and the download capability is confirmed. Streaming is never treated as permission.
